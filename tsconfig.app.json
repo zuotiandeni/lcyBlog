@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  // TODO: 按序载入的element组件，需要在include中配置"auto-imports.d.ts"，否则编译器将爆红
+  "include": ["env.d.ts","src/**/*", "src/**/*.vue","auto-imports.d.ts"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "types": ["element-plus/global.d.ts"],
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "preserve" // JSX的配置
+  },
+
+}
