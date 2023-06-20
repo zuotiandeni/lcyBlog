@@ -2,6 +2,14 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+
+## About lcyBlog
+
+> 一个主要用于学习Vue3的项目
+> 一些杂乱无章的知识点
+> 包含一个基于ElementPlus 进行二次开发的表单组件
+> 项目预览地址：http://1.14.75.249/
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
