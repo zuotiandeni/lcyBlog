@@ -11,7 +11,7 @@ import router from './router'
 onMounted(() => {
     // 设置浏览器的title为环境变量中的自定义title
     document.title = import.meta.env.VITE_TITLE
-    ElMessage('This is a message.')
+    // ElMessage('This is a message.')
 })
 // 菜单数据
 // const menuData = reactive<TreeData[]>([

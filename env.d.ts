@@ -4,6 +4,8 @@
 declare module 'element-plus/dist/locale/zh-cn.mjs'
 declare module 'element-plus/dist/locale/en.mjs'
 declare module 'element-plus'
+declare module '@codemirror/lang-vue'
+declare module '@codemirror/theme-one-dark'
 // 添加环境变量的类型提示
 interface ImportMetaEnv {
     VITE_TITLE: string
