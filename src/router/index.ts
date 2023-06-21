@@ -107,6 +107,28 @@ const router = createRouter({
                     },
                     component: () => import('../views/PiecemealKnowledge/index.vue')
                 },
+                {
+                    path: '/UsefulCodeSnippet',
+                    name: 'UsefulCodeSnippet',
+                    meta: {
+                        nameZH: '有用的代码片段'
+                    },
+                    component: () => import('../views/UsefulCodeSnippet/index.vue'),
+                    children: [
+                    
+                        {
+                            path: '/UsefulCodeSnippet/DebounceAndThrottle',
+                            name: 'DebounceAndThrottle',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: '防抖&节流',
+                                icon: 'message'
+                            },
+                            component: () => import('../views/UsefulCodeSnippet/components/DebounceAndThrottle.vue')
+                        },
+                    ]
+                },
             ]
         },
         {

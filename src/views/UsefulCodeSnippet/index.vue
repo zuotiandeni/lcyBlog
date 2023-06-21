@@ -2,7 +2,8 @@
 import { defineAsyncComponent, type Component } from 'vue'
 import router from '@/router/index'
 
-const MenuComp = defineAsyncComponent(
+
+const menuComp = defineAsyncComponent(
     (): Promise<Component> => import('@/components/MenuPolymorphism/index.vue')
 )
 
@@ -11,18 +12,16 @@ const handleSelect = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
     router.push(key)
 }
-
 </script>
 
 <template>
-    <div class="demo-box">
-        <MenuComp :handle-select="handleSelect" :parent-path="'/demo'"/>
+    <div class="useful-code-snippet-box">
+        <menuComp :handle-select="handleSelect" :parent-path="'/UsefulCodeSnippet'"/>
     </div>
 </template>
 
-<style scoped lang="scss">
-.demo-box {
+<style lang="scss" scoped>
+.useful-code-snippet-box {
     height: 100%;
-    // background-color: $bgColor;
 }
 </style>

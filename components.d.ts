@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     Menu: typeof import('./src/components/Menu/Menu.vue')['default']
+    MenuPolymorphism: typeof import('./src/components/MenuPolymorphism/index.vue')['default']
     MenuPolymorphismIndex: typeof import('./src/components/MenuPolymorphism/MenuPolymorphismIndex.vue')['default']
     PolymorphismRanderMenuItem: typeof import('./src/components/MenuPolymorphism/PolymorphismRanderMenuItem.vue')['default']
     RanderMenuItem: typeof import('./src/components/Menu/RanderMenuItem.vue')['default']
