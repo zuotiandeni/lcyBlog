@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RouteMenuConf } from '@/views/DemoConfig'
+import type { RouteMenuConf } from './GenerateMenuData'
 import IconCommunity from '@/components/icons/IconCommunity.vue'
 import IconEchartsMain from '@/components/icons/IconEchartsMain.vue'
 defineProps<{
