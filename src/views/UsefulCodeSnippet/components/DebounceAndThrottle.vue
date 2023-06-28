@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import { useSystemConfigStore } from '@/stores/generalConfig'
+import { storeToRefs } from 'pinia'
+
+// pinia使用
+const { systemDarkPattern } = storeToRefs(useSystemConfigStore())
+console.log(systemDarkPattern.value)
+
 // 防抖
 const debounce = ref(`
 function debounce(func, delay, immediate = false) {
@@ -62,17 +69,16 @@ const explain = `
 `
 
 // 夜间模式将返回true
-console.log(window.matchMedia('(prefers-color-scheme: dark)'));
+console.log(window.matchMedia('(prefers-color-scheme: dark)'))
 
-console.log(window.matchMedia('(prefers-color-scheme: dark)').matches);
-
+console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
 </script>
 
 <template>
-    <div style="margin: 8px;">
+    <div style="margin: 8px">
         <div>
             <h3>防抖和节流的区别是什么？</h3>
-            <div class="explain-box">
+            <div class="explain-box" :style="systemDarkPattern ? { color: 'darkblue' }: undefined">
                 {{ explain }}
             </div>
         </div>
@@ -80,7 +86,7 @@ console.log(window.matchMedia('(prefers-color-scheme: dark)').matches);
             <h3>防抖代码实现：</h3>
             <CodeMirror
                 :disabled="true"
-                :dark="true"
+                :dark="systemDarkPattern"
                 :codeStyle="{
                     maxWidth: '100%'
                 }"
@@ -94,7 +100,7 @@ console.log(window.matchMedia('(prefers-color-scheme: dark)').matches);
                 :codeStyle="{
                     maxWidth: '100%'
                 }"
-                :dark="true"
+                :dark="systemDarkPattern"
                 :code="throttle"
             />
         </div>
