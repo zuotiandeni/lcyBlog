@@ -3,13 +3,23 @@ import { onBeforeUnmount, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 
 import { useSystemConfigStore } from '@/stores/generalConfig'
+
+
 const { setSystemDarkPattern } = useSystemConfigStore()
+
+const callBack = (event: { matches: any; }) => {
+    setSystemDarkPattern(event.matches)
+}
+const listeningObject = window.matchMedia('(prefers-color-scheme: dark)')
+
+
 onMounted(() => {
     // 监听系统模式（夜间和日间）切换
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-        console.log('触发监听事件')
-        setSystemDarkPattern(event.matches)
-    })
+    listeningObject.addEventListener('change', callBack)
+})
+
+onBeforeUnmount(()=>{
+    listeningObject.removeEventListener('change', callBack)
 })
 </script>
 
