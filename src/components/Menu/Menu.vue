@@ -3,7 +3,7 @@ import { onMounted, ref, type Ref } from 'vue'
 import { type TreeData } from './Menu'
 import RanderMenuItem from './RanderMenuItem.vue'
 import router from '@/router'
-import { getImageUrl } from '@/utils'
+
 type Props = {
     menuData: TreeData[]
 }
@@ -20,8 +20,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 
 // 获取logo路径
-const logoUrl = getImageUrl('myWebsiteIcon.png', 'assetsImages')
-console.log(logoUrl)
+
+const logoUrl = new URL('../../assets/myWebsiteIcon.png', import.meta.url).href
 </script>
 
 <template>

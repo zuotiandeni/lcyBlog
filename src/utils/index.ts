@@ -6,9 +6,8 @@ export function getImageUrl(name: string, dir: string) {
     console.log(dir)
 
     const dirMappingPath: Paths = {
-        assetsImages: '../assets/images'
+        assetsImages: '/src/assets'
     }
-    console.log()
 
-    return new URL(`${dirMappingPath[dir as keyof Paths]}/${name}`, import.meta.url).href
+    return new URL(`${dir}${name}`, import.meta.url).href
 }
