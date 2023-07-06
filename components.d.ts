@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BlogListItem: typeof import('./src/components/BlogListItem/index.vue')['default']
     CodeMirror: typeof import('./src/components/CodeMirror.vue')['default']
+    CodeTemplate: typeof import('./src/components/CodeTemplate.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']

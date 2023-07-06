@@ -139,6 +139,49 @@ const router = createRouter({
                         },
                     ]
                 },
+                {
+                    path: '/DesignModeToJS',
+                    name: 'DesignModeToJS',
+                    meta: {
+                        nameZH: 'JS设计模式'
+                    },
+                    component: () => import('../views/DesignModeToJS/index.vue'),
+                    children: [
+                        {
+                            path: '/DesignModeToJS/singletonPattern',
+                            name: 'singletonPattern',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: '单例模式',
+                                icon: 'message'
+                            },
+                            component: () => import('../views/DesignModeToJS/routeComponents/singletonPattern.vue')
+                        },
+                        {
+                            path: '/DesignModeToJS/strategyPattern',
+                            name: 'strategyPattern',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: '策略模式',
+                                icon: 'Compass'
+                            },
+                            component: () => import('../views/DesignModeToJS/routeComponents/strategyPattern.vue')
+                        },
+                        {
+                            path: '/DesignModeToJS/proxyPattern',
+                            name: 'proxyPattern',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: '代理模式',
+                                icon: 'IconEchartsMain'
+                            },
+                            component: () => import('../views/DesignModeToJS/routeComponents/proxyPattern.vue')
+                        },
+                    ]
+                },
             ]
         },
         {

@@ -54,7 +54,7 @@ const explain = `
 <template>
     <div style="margin: 8px;">
         <div class="detail-box">
-            <h3>分式函数实现：</h3>
+            <h3>分时函数实现：</h3>
             <div class="explain-box">
                 {{ explain }}
             </div>

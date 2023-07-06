@@ -30,14 +30,20 @@ const icons = {
         </el-sub-menu>
         <el-menu-item-group v-if="item.type === 'el-menu-item-group'" :index="item.key">
             <template #title>
-                <el-icon v-if="item.iconComp"><component :is="item.iconComp" /></el-icon>
+                <el-icon v-if="item.iconComp"
+                    ><component
+                        :is="icons[item.iconComp as keyof iconsEnum] ? icons[item.iconComp as keyof iconsEnum] : item.iconComp"
+                /></el-icon>
                 {{ item.title }}
             </template>
             <PolymorphismRanderMenuItem v-if="item.children" :menu-config="item.children" />
         </el-menu-item-group>
         <el-menu-item v-if="item.type === 'el-menu-item'" :index="item.key">
             <template #title>
-                <el-icon v-if="item.iconComp"><component :is="item.iconComp" /></el-icon>
+                <el-icon v-if="item.iconComp"
+                    ><component
+                        :is="icons[item.iconComp as keyof iconsEnum] ? icons[item.iconComp as keyof iconsEnum] : item.iconComp"
+                /></el-icon>
                 {{ item.title }}
             </template>
             <PolymorphismRanderMenuItem v-if="item.children" :menu-config="item.children" />
