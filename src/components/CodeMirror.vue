@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Codemirror } from 'vue-codemirror'
 import { vue } from '@codemirror/lang-vue'
 import { oneDark } from '@codemirror/theme-one-dark'
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<Props>(), {
   // tabSize: 2
 })
 // 扩展
-const extensions = props.dark ? [vue(), oneDark] : [vue()]
+const extensions = ref(props.dark ? [vue(), oneDark] : [vue()])
 const codeValue = ref(props.code)
 const emits = defineEmits(['update:code', 'ready', 'change', 'focus', 'blur'])
 function handleReady (payload: any) {
@@ -42,6 +42,11 @@ function onFocus (viewUpdate: any) {
 function onBlur (viewUpdate: any) {
   emits('blur', viewUpdate)
 }
+
+// 监听是否采用暗黑模式
+watch(()=>props.dark, (newVal)=>{
+  extensions.value = newVal ? [vue(), oneDark] : [vue()]
+})
 </script>
 <template>
   <div>

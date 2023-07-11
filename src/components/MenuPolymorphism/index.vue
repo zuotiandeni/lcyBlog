@@ -34,9 +34,9 @@ let menuData = generateMenuData(props.parentPath)
     // background-color: $bgColor;
 }
 
-:deep(.el-aside) {
-    background-color: #ffffff;
-}
+// :deep(.el-aside) {
+//     background-color: #ffffff;
+// }
 :deep(.el-main) {
     padding: 0;
 }

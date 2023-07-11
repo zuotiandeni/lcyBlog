@@ -1,53 +1,39 @@
-/* color palette from <https://github.com/vuejs/theme> */
+/* 定义一组颜色 */
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  /* 主要的背景色 */
+  --blog-light-primary-background: #ffffff;
+  --blog-dark-primary-background: rgba(60, 60, 60, 0.29);
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* 比较浅的背景色 */
+  --blog-light-shallow-background: rgba(244,246,248, 1);
+  --blog-dark-shallow-background: rgba(60, 60, 60, 0.1);
 
-  --vt-c-indigo: #2c3e50;
+  /* 标题的文字颜色 */
+  --blog-light-title-text: #222226;
+  --blog-dark-title-text: #ffffff;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  /* 简介（说明）的文字颜色 */
+  --blog-light-intro-text: #555666;
+  --blog-dark-intro-text: #E5EAF3;
 }
 
-/* semantic color variables for this project */
+/* 白昼模式下固定变量的颜色取值 */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+  --background-color-primary: var(--blog-light-primary-background);
+  --background-color-shallow: var(--blog-light-shallow-background);
+  --text-color-title: var(--blog-light-title-text);
+  --text-color-intro: var(--blog-light-intro-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
+/* 暗夜模式下固定变量的颜色取值 */
+html.dark {
+  --background-color-primary: var(--blog-dark-primary-background);
+  --background-color-shallow: var(--blog-dark-shallow-background);
+  --text-color-title: var(--blog-dark-title-text);
+  --text-color-intro: var(--blog-dark-intro-text);
+  /* :root {
+    
+  } */
 }
 
 *,
@@ -61,8 +47,6 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,

@@ -26,7 +26,7 @@ defineProps<{
 
 <style scoped lang="scss">
 .blog-list-box {
-    background: #fff;
+    background: var(--background-color-primary);
     a {
         display: flex;
         padding: 24px;
@@ -47,7 +47,7 @@ defineProps<{
                 font-size: 18px;
                 font-weight: 500;
                 line-height: 24px;
-                color: #222226;
+                color: var(--text-color-title);
                 overflow: hidden;
                 white-space: normal;
                 word-break: break-word;
@@ -62,7 +62,7 @@ defineProps<{
         }
 
         .blog-item-abstract {
-            color: #555666;
+            color: var(--text-color-intro);
             margin-top: 4px;
             line-height: 19px;
             overflow: hidden;
@@ -74,7 +74,7 @@ defineProps<{
         }
 
         .blog-item-footer {
-            color: #555666;
+            color: var(--text-color-intro);
             line-height: 20px;
             font-size: 14px;
             margin-top: 12px;
@@ -82,6 +82,7 @@ defineProps<{
             span {
                 display: inline-block;
                 margin-right: 8px;
+                padding-right: 8px;
                 position: relative;
             }
             span:nth-child(n + 2) {

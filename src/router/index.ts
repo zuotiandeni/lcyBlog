@@ -64,7 +64,20 @@ const router = createRouter({
                                         icon: 'message'
                                     },
                                     component: () => import('../views/Demos/EchartsAQI.vue')
+                                },
+                                {
+                                    path: '/demo/EchartBar',
+                                    name: 'EchartBar',
+                                    meta: {
+                                        // demoNavigation: false, // 如果值为false，则demo的菜单中不展示
+                                        navigation: false, // 如果值为false，则主导航栏中不展示
+                                        type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                        nameZH: '柱状图',
+                                        icon: 'message'
+                                    },
+                                    component: () => import('../views/Demos/EchartBar.vue')
                                 }
+                                
                             ]
                         },
                         {

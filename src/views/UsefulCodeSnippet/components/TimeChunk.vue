@@ -78,7 +78,8 @@ h3 {
     --tw-bg-opacity: 1;
     font-size: 16px;
     white-space: pre-line;
-    background-color: rgb(244 246 248 / var(--tw-bg-opacity));
+    color: var(--text-color-intro);
+    background-color: var(--background-color-shallow);
     padding: 8px;
     border-radius: 4px;
 }

@@ -3,10 +3,10 @@ import { onBeforeUnmount, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 
 import { useSystemConfigStore } from '@/stores/generalConfig'
-
+// 暗黑模式 样式
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const { setSystemDarkPattern } = useSystemConfigStore()
-
 const callBack = (event: { matches: any; }) => {
     setSystemDarkPattern(event.matches)
 }

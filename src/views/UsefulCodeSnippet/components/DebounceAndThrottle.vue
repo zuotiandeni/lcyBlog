@@ -67,11 +67,6 @@ const explain = `
 
 总结来说，防抖适用于需要等待一段时间后才能进行下一步操作的场景，节流适用于需要限制操作频率的场景。
 `
-
-// 夜间模式将返回true
-console.log(window.matchMedia('(prefers-color-scheme: dark)'))
-
-console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
 </script>
 
 <template>
