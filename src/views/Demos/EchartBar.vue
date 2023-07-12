@@ -10,7 +10,7 @@ const { systemDarkPattern } = storeToRefs(useSystemConfigStore())
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core'
 // 引入柱状图图表，图表后缀都为 Chart
-import { BarChart } from 'echarts/charts'
+import { BarChart, PieChart } from 'echarts/charts'
 // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
     ToolboxComponent,
@@ -31,6 +31,7 @@ echarts.use([
     TooltipComponent,
     GridComponent,
     BarChart,
+    PieChart,
     LabelLayout,
     UniversalTransition,
     CanvasRenderer
@@ -54,7 +55,7 @@ const echartsBox = ref<HTMLElement>()
 // echart实例
 let echartExample: echarts.ECharts | null = null
 // 数据选项
-let chartDataOptions:any = {}
+let chartDataOptions: any = {}
 onMounted(() => {
     // 初始化图标实例
     echartExample = echarts.init(
@@ -104,26 +105,56 @@ onMounted(() => {
                 // 提供一份数据。
                 source: [
                     ['product', '2022', '2023'],
-                    ['Mon', 120, 130],
+                    ['Mon', 120, 30],
                     ['Tue', 200, 280],
-                    ['Wed', 150, 120],
-                    ['Thu', 80, 60],
+                    ['Wed', 150, 220],
+                    ['Thu', 80, 350],
                     ['Fri', 70, 130],
-                    ['Sat', 110, 150],
-                    ['Sun', 130, 310]
+                    ['Sat', 110, 450],
+                    ['Sun', 130, 310],
                 ]
             },
+            grid: { top: '55%' },
             // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
             xAxis: { type: 'category' },
             // 声明一个 Y 轴，数值轴。
-            yAxis: { name: 'GDP总额' },
+            yAxis: { gridIndex: 0 },
             // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
-            series: [{ type: 'bar' }, { type: 'bar' }]
+            series: [
+                { type: 'bar' },
+                { type: 'bar' },
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['50%', '25%'],
+                    selectedOffset: 80, // 选中扇区的偏移量
+                    seriesLayoutBy: 'row',
+                    label: {
+                        // b表示：数据名，d表示：百分比
+                        formatter: '{b}: Mon  ({d}%)'
+                    },
+                    emphasis: { // 高亮状态的扇区和标签样式。
+                        // 'none' 不淡出其它图形，默认使用该配置。
+                        // 'self' 只聚焦（不淡出）当前高亮的数据的图形。
+                        // 'series' 聚焦当前高亮的数据所在的系列的所有图形。
+                        focus: 'self',
+                    },
+                    encode: {
+                        itemName: 0,
+                        value: 1,
+                        tooltip: 1,
+                    }
+                }
+            ]
         }
 
         echartExample?.setOption(chartDataOptions)
     }, 1000)
-})
+
+    // 联动饼图
+    linkageFunc();
+})  
 
 // 监听暗黑模式的切换
 watch(
@@ -140,6 +171,7 @@ watch(
             renderer: 'canvas'
         })
         echartExample.setOption(chartDataOptions)
+        linkageFunc();
     }
 )
 
@@ -161,17 +193,30 @@ onUnmounted(() => {
  * ***************************************************
  */
 
-
- // 动态改变数据
- const changeData = ()=>{
-    const source = [ ...chartDataOptions.dataset.source, [ 'endDay', 50, 65 ]]
+// 动态改变数据
+const changeData = () => {
+    const source = [...chartDataOptions.dataset.source, ['endDay', 180, 65]]
     echartExample?.setOption({
         dataset: {
-            source
-        }
+            source,
+        },
     })
- }
+}
 
+// 饼图联动
+const linkageFunc = ()=>{
+    echartExample?.on('mouseover', 'series.bar', function (params: any) {
+        console.log(params);
+        params.dataIndex
+        const series = JSON.parse(JSON.stringify(chartDataOptions.series))
+        series.at(-1).encode.value = params.dataIndex + 1;
+        series.at(-1).encode.tooltip = params.dataIndex + 1;
+        series.at(-1).label.formatter = `{b}: ${params.name}  ({d}%)`
+        echartExample?.setOption({
+            series
+        })
+    });
+}
 /**
  * 代码段
  */
@@ -230,19 +275,16 @@ chartDataOptions = {
     series: [{ type: 'bar' }, { type: 'bar' }]
 }
 `
-
 </script>
 
 <template>
-    <div style="height: 300px;">
+    <div style="height: 600px">
         <div ref="echartsBox" :style="echartStyle"></div>
     </div>
 
     <div @click="changeData">改变数据data</div>
 
-    <el-divider>
-      以下是 Echarts 数据配置的两种方式
-    </el-divider>
+    <el-divider> 以下是 Echarts 数据配置的两种方式 </el-divider>
 
     <CodeMirror
         :disabled="true"
