@@ -66,7 +66,7 @@ onMounted(() => {
         }
     )
     // 数据加载的loading动画
-    echartExample.showLoading();
+    echartExample.showLoading()
     window.addEventListener('resize', () => {
         // 宽高变化时，改变echarts的大小
         echartExample?.resize()
@@ -98,10 +98,30 @@ onMounted(() => {
         //     ]
         // }
         // 关闭数组加载的动画
-        echartExample?.hideLoading();
+        echartExample?.hideLoading()
 
         chartDataOptions = {
-            legend: {},
+            title: {
+                text: 'echarts图',
+                textStyle: {
+                    fontWeight: '400',
+                    fontSize: 20
+                },
+                textAlign: 'left', // 整体（包括 text 和 subtext）的水平对齐。
+                left: 50, // title 组件离容器左侧的距离。
+                top: 0
+            },
+            // 调色盘颜色列表。如果系列没有设置颜色，则会依次循环从该列表中取颜色作为系列颜色
+            color: ["#4cabce", "#e5323e"],
+            // 图例的配置项
+            legend: {
+                // horizontal: 横向图例   vertical：竖直排列
+                orient: 'vertical',
+                // 以下配置项：相当于绝对定位到最右边
+                right: 0,
+                inactiveBorderColor: 'rgba(176, 62, 62, 1)'
+,
+            },
             tooltip: {},
             dataset: {
                 // 此种方式需要引入：DatasetComponent
@@ -114,7 +134,7 @@ onMounted(() => {
                     ['Thu', 80, 350],
                     ['Fri', 70, 130],
                     ['Sat', 110, 450],
-                    ['Sun', 130, 310],
+                    ['Sun', 130, 310]
                 ]
             },
             grid: { top: '55%' },
@@ -124,7 +144,19 @@ onMounted(() => {
             yAxis: { gridIndex: 0 },
             // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
             series: [
-                { type: 'bar' },
+                { 
+                    type: 'bar',
+                    // 柱条的背景色
+                    showBackground: true,
+                    backgroundStyle: {
+                        color: '#ccc',
+                        borderColor: 'red'
+                    },
+                    // 在系列中设置了颜色，则不会去调色盘取色
+                    itemStyle: {
+                        color: 'orange'
+                    }
+                },
                 { type: 'bar' },
                 {
                     type: 'pie',
@@ -137,16 +169,28 @@ onMounted(() => {
                         // b表示：数据名，d表示：百分比
                         formatter: '{b}: Mon  ({d}%)'
                     },
-                    emphasis: { // 高亮状态的扇区和标签样式。
+                    // 在系列中设置了颜色，则不会去调色盘取色
+                    itemStyle: {
+                        color: (params: any)=> {
+                            console.log(params);
+                            if (params.dataIndex === 0) {
+                                return 'orange'
+                            } else {
+                                return '#4cabce'
+                            }
+                        }
+                    },
+                    emphasis: {
+                        // 高亮状态的扇区和标签样式。
                         // 'none' 不淡出其它图形，默认使用该配置。
                         // 'self' 只聚焦（不淡出）当前高亮的数据的图形。
                         // 'series' 聚焦当前高亮的数据所在的系列的所有图形。
-                        focus: 'self',
+                        focus: 'self'
                     },
                     encode: {
                         itemName: 0,
                         value: 1,
-                        tooltip: 1,
+                        tooltip: 1
                     }
                 }
             ]
@@ -156,8 +200,8 @@ onMounted(() => {
     }, 1000)
 
     // 联动饼图
-    linkageFunc();
-})  
+    linkageFunc()
+})
 
 // 监听暗黑模式的切换
 watch(
@@ -174,7 +218,7 @@ watch(
             renderer: 'canvas'
         })
         echartExample.setOption(chartDataOptions)
-        linkageFunc();
+        linkageFunc()
     }
 )
 
@@ -201,24 +245,24 @@ const changeData = () => {
     const source = [...chartDataOptions.dataset.source, ['endDay', 180, 65]]
     echartExample?.setOption({
         dataset: {
-            source,
-        },
+            source
+        }
     })
 }
 
 // 饼图联动
-const linkageFunc = ()=>{
+const linkageFunc = () => {
     echartExample?.on('mouseover', 'series.bar', function (params: any) {
-        console.log(params);
+        console.log(params)
         params.dataIndex
         const series = JSON.parse(JSON.stringify(chartDataOptions.series))
-        series.at(-1).encode.value = params.dataIndex + 1;
-        series.at(-1).encode.tooltip = params.dataIndex + 1;
+        series.at(-1).encode.value = params.dataIndex + 1
+        series.at(-1).encode.tooltip = params.dataIndex + 1
         series.at(-1).label.formatter = `{b}: ${params.name}  ({d}%)`
         echartExample?.setOption({
             series
         })
-    });
+    })
 }
 /**
  * 代码段
