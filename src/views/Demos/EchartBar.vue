@@ -65,7 +65,8 @@ onMounted(() => {
             renderer: 'canvas'
         }
     )
-
+    // 数据加载的loading动画
+    echartExample.showLoading();
     window.addEventListener('resize', () => {
         // 宽高变化时，改变echarts的大小
         echartExample?.resize()
@@ -96,6 +97,8 @@ onMounted(() => {
         //         }
         //     ]
         // }
+        // 关闭数组加载的动画
+        echartExample?.hideLoading();
 
         chartDataOptions = {
             legend: {},
