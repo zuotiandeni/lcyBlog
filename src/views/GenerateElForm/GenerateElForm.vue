@@ -211,6 +211,12 @@ const FormConfig = reactive({
             key: 'detePickerValue'
         },
         {
+            label: '测试表单生成函数2',
+            type: 'slots',
+            key: 'content',
+            colSpan: 24
+        },
+        {
             label: '日期时间选择框',
             colSpan: 8,
             type: 'el-date-picker',
@@ -301,8 +307,7 @@ const getData = () => {
 // 重置表单数据
 const resetFields = () => {
     formInstance.value?.$.exposed?.resetFields()
-    console.log(formData);
-    
+    console.log(formData)
 }
 // 在JSX中使用slots的相关代码
 const slotsCode = `

@@ -77,7 +77,6 @@ const router = createRouter({
                                     },
                                     component: () => import('../views/Demos/EchartBar.vue')
                                 }
-                                
                             ]
                         },
                         {
@@ -101,7 +100,7 @@ const router = createRouter({
                                 icon: 'message'
                             },
                             component: () => import('../views/Demos/InterflowParent.vue')
-                        },
+                        }
                     ]
                 },
                 {
@@ -137,7 +136,10 @@ const router = createRouter({
                                 nameZH: '防抖&节流',
                                 icon: 'message'
                             },
-                            component: () => import('../views/UsefulCodeSnippet/components/DebounceAndThrottle.vue')
+                            component: () =>
+                                import(
+                                    '../views/UsefulCodeSnippet/components/DebounceAndThrottle.vue'
+                                )
                         },
                         {
                             path: '/UsefulCodeSnippet/TimeChunk',
@@ -148,8 +150,9 @@ const router = createRouter({
                                 nameZH: '分时函数',
                                 icon: 'message'
                             },
-                            component: () => import('../views/UsefulCodeSnippet/components/TimeChunk.vue')
-                        },
+                            component: () =>
+                                import('../views/UsefulCodeSnippet/components/TimeChunk.vue')
+                        }
                     ]
                 },
                 {
@@ -169,7 +172,10 @@ const router = createRouter({
                                 nameZH: '单例模式',
                                 icon: 'message'
                             },
-                            component: () => import('../views/DesignModeToJS/routeComponents/singletonPattern.vue')
+                            component: () =>
+                                import(
+                                    '../views/DesignModeToJS/routeComponents/singletonPattern.vue'
+                                )
                         },
                         {
                             path: '/DesignModeToJS/strategyPattern',
@@ -180,7 +186,10 @@ const router = createRouter({
                                 nameZH: '策略模式',
                                 icon: 'Compass'
                             },
-                            component: () => import('../views/DesignModeToJS/routeComponents/strategyPattern.vue')
+                            component: () =>
+                                import(
+                                    '../views/DesignModeToJS/routeComponents/strategyPattern.vue'
+                                )
                         },
                         {
                             path: '/DesignModeToJS/proxyPattern',
@@ -191,10 +200,33 @@ const router = createRouter({
                                 nameZH: '代理模式',
                                 icon: 'IconEchartsMain'
                             },
-                            component: () => import('../views/DesignModeToJS/routeComponents/proxyPattern.vue')
-                        },
+                            component: () =>
+                                import('../views/DesignModeToJS/routeComponents/proxyPattern.vue')
+                        }
                     ]
                 },
+                {
+                    path: '/DomCss',
+                    name: 'DomCss',
+                    meta: {
+                        nameZH: 'DOM和CSS'
+                    },
+                    component: () => import('../views/DomCss/index.vue'),
+                    children: [
+                        {
+                            path: '/DomCss/MutationObserver',
+                            name: 'MutationObserver',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: '监听Dom所有变化',
+                                icon: 'message'
+                            },
+                            component: () =>
+                                import('../views/DomCss/components/MutationObserver.vue')
+                        }
+                    ]
+                }
             ]
         },
         {

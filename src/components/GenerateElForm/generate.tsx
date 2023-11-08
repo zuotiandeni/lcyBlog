@@ -56,7 +56,7 @@ export const renderElItem = (elItem: ColsItem, formData: FormData, context: any)
     });
 
     // 生成每个表单项的slots start
-    let itemInteriorSlotsObject: ItemInteriorSlotsObject = {}
+    const itemInteriorSlotsObject: ItemInteriorSlotsObject = {}
     elItem.slots?.forEach((slotItem) => {
         itemInteriorSlotsObject[slotItem.name] = () => {
             if (typeof slotItem.content === 'function') {
