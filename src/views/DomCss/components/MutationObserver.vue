@@ -124,13 +124,20 @@ onMounted(() => {
 <style lang="scss" scoped>
 .design-mode-box {
     margin: 8px;
+    color: var(--text-color-intro);
+    background-color: var(--background-color-shallow);
+}
+
+.design-mode-describe {
+    color: var(--text-color-intro);
+    background-color: var(--background-color-shallow);
+    transition: color 0.3s;
 }
 
 .design-mode-describe {
     --tw-bg-opacity: 1;
     font-size: 16px;
     white-space: pre-line;
-    background-color: rgb(244 246 248 / var(--tw-bg-opacity));
     padding: 8px;
     border-radius: 4px;
     margin: 10px 0;

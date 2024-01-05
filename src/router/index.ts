@@ -224,6 +224,18 @@ const router = createRouter({
                             },
                             component: () =>
                                 import('../views/DomCss/components/MutationObserver.vue')
+                        },
+                        {
+                            path: '/DomCss/CSSDynamicHeight',
+                            name: 'CSSDynamicHeight',
+                            meta: {
+                                navigation: false, // 如果值为false，则主导航栏中不展示
+                                type: 'el-menu-item', // 取值为 el-sub-menu el-menu-item-group el-menu-item
+                                nameZH: 'CSS动态高度展示',
+                                icon: 'message'
+                            },
+                            component: () =>
+                                import('../views/DomCss/components/CSSDynamicHeight.vue')
                         }
                     ]
                 }
