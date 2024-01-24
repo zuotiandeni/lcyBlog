@@ -10,7 +10,8 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // 手动引入element组件需要通过它来使用element样式
-// 我也不知道怎么解决，这是个bug，可能和编辑器有关
+// 我也不知道怎么解决，这是个bug，可能和编辑器有关(在tsconfig.node.json中的compilerOptions添加"moduleResolution": "bundler",解决)
+// 但是可能导致使用这个配置后，从element-plus导出的组件类型找不到了。
 import ElementPlus from 'unplugin-element-plus/vite'
 // https://vitejs.dev/config/
 export default defineConfig({

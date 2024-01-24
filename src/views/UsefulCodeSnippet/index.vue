@@ -2,7 +2,6 @@
 import { defineAsyncComponent, type Component } from 'vue'
 import router from '@/router/index'
 
-
 const menuComp = defineAsyncComponent(
     (): Promise<Component> => import('@/components/MenuPolymorphism/index.vue')
 )
@@ -16,7 +15,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 <template>
     <div class="useful-code-snippet-box">
-        <menuComp :handle-select="handleSelect" :parent-path="'/UsefulCodeSnippet'"/>
+        <menuComp :handle-select="handleSelect" :parent-path="'/UsefulCodeSnippet'" />
     </div>
 </template>
 
